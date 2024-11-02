@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1
+kind: Kustomization
+metadata:
+  name: nginx-app
+  namespace: flux-system
+spec:
+  interval: 1m
+  path: "./nginx-app"  # Path to your NGINX Helm chart
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: nginx-app-repo
+  helmCharts:
+    - name: nginx
+      chart: nginx-app   # Point to the chart path
+      version: 15.1.0       # Specify the chart version if needed
