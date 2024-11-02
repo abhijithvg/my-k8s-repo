@@ -1,0 +1,18 @@
+# nginx-app/helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nginx-app
+  namespace: flux-system
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: ./nginx-app    # Path to the chart in your Git repository
+      sourceRef:
+        kind: GitRepository
+        name: nginx-app-repo
+      version: 15.1.0       # Specify the chart version if needed
+  values:
+    # Add any custom values here for the Helm chart
+
